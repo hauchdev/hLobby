@@ -7,6 +7,7 @@ import dev.hauch.hlobby.HLobby;
 import dev.hauch.hlobby.message.MessageKey;
 import dev.hauch.hlobby.permission.Permission;
 import dev.hauch.hlobby.util.Placeholders;
+import dev.hauch.hlobby.util.Version;
 import org.slf4j.Logger;
 
 import java.net.URI;
@@ -79,7 +80,7 @@ public final class UpdateChecker {
             this.latestVersion.set(version);
             this.downloadUrl.set(url);
 
-            if (this.isNewer(version, HLobby.PLUGIN_VERSION)) {
+            if (Version.isNewer(version, HLobby.PLUGIN_VERSION)) {
                 this.updateAvailable.set(true);
                 this.logger.info("A new version of hLobby is available: {} (current: {}). Download: {}",
                     version, HLobby.PLUGIN_VERSION, url);
@@ -99,32 +100,6 @@ public final class UpdateChecker {
                     Placeholders.version(this.latestVersion.get()),
                     Placeholders.url(this.downloadUrl.get()));
             }
-        }
-    }
-
-    private boolean isNewer(final String candidate, final String current) {
-        final String[] candidateParts = candidate.split("[.\\-]");
-        final String[] currentParts = current.split("[.\\-]");
-        final int length = Math.max(candidateParts.length, currentParts.length);
-        for (int i = 0; i < length; i++) {
-            final int candidateValue = i < candidateParts.length ? numeric(candidateParts[i]) : 0;
-            final int currentValue = i < currentParts.length ? numeric(currentParts[i]) : 0;
-            if (candidateValue != currentValue) {
-                return candidateValue > currentValue;
-            }
-        }
-        return false;
-    }
-
-    private int numeric(final String value) {
-        final String digits = value.replaceAll("[^0-9]", "");
-        if (digits.isEmpty()) {
-            return 0;
-        }
-        try {
-            return Integer.parseInt(digits);
-        } catch (final NumberFormatException exception) {
-            return 0;
         }
     }
 

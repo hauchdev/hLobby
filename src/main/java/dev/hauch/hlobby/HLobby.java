@@ -56,7 +56,8 @@ public final class HLobby implements HLobbyProvider {
     private final ProxyServer proxy;
     private final Logger logger;
     private final Path dataDirectory;
-    private final PluginContainer container;
+
+    private PluginContainer container;
 
     private ConfigManager config;
     private MessageManager messages;
@@ -73,8 +74,6 @@ public final class HLobby implements HLobbyProvider {
         this.proxy = proxy;
         this.logger = logger;
         this.dataDirectory = dataDirectory;
-        this.container = proxy.getPluginManager().getPlugin(PLUGIN_ID)
-            .orElseThrow(() -> new IllegalStateException("Plugin container for " + PLUGIN_ID + " not found"));
     }
 
     /**
@@ -203,7 +202,16 @@ public final class HLobby implements HLobbyProvider {
     /** {@inheritDoc} */
     @Override
     public PluginContainer container() {
-        return this.container;
+        PluginContainer resolved = this.container;
+        if (resolved == null) {
+            // The container is only registered after the plugin instance has
+            // been constructed, so resolve it lazily on first use.
+            resolved = this.proxy.getPluginManager().getPlugin(PLUGIN_ID)
+                .orElseThrow(() -> new IllegalStateException(
+                    "Plugin container for " + PLUGIN_ID + " not found"));
+            this.container = resolved;
+        }
+        return resolved;
     }
 
     /** {@inheritDoc} */
