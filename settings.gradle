@@ -1,0 +1,8 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'hLobby'
