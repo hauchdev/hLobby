@@ -133,7 +133,23 @@ commands:
     name: "lobbycreate"
     aliases: ["lobbyadd", "addlobby"]
     permission: "lobby.admin.create"
+  hlobby:
+    enabled: true
+    name: "hlobby"
+    aliases: ["hlobbyadmin", "hla"]
+    permission: "lobby.admin.main"
 ```
+
+## Metrics
+
+```yaml
+metrics:
+  enabled: true
+```
+
+- `enabled` — submit anonymous usage statistics to [FastStats](https://faststats.dev/).
+  No player data is collected. Plugin authors must replace
+  `MetricsWrapper.FASTSTATS_TOKEN` before releasing a build.
 
 ## Miscellaneous
 
