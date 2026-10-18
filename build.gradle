@@ -3,8 +3,15 @@ plugins {
     id 'com.gradleup.shadow' version '8.3.5'
 }
 
-version = '0.1.0'
+version = '1.0.0'
 group = 'dev.hauch.hlobby'
+
+ext {
+    // Velocity API version comes from gradle.properties (managed by Devix).
+    velocityVersion = project.api_version
+    bstatsVersion = '3.2.1'
+    junitVersion = '5.11.4'
+}
 
 repositories {
     mavenCentral()
@@ -12,15 +19,55 @@ repositories {
 }
 
 dependencies {
-    compileOnly "com.velocitypowered:velocity-api:${project.api_version}"
-    annotationProcessor "com.velocitypowered:velocity-api:${project.api_version}"
+    compileOnly "com.velocitypowered:velocity-api:${velocityVersion}"
+    annotationProcessor "com.velocitypowered:velocity-api:${velocityVersion}"
+
+    // bStats anonymous usage metrics (relocated at build time).
+    implementation "org.bstats:bstats-velocity:${bstatsVersion}"
+
+    testImplementation platform("org.junit:junit-bom:${junitVersion}")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 java {
     toolchain { languageVersion = JavaLanguageVersion.of(21) }
+    withSourcesJar()
+    withJavadocJar()
 }
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = 'UTF-8'
     it.options.release = 21
+}
+
+tasks.withType(Javadoc).configureEach {
+    it.options.encoding = 'UTF-8'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+// The shadow jar is the publishable artifact: it contains the relocated
+// dependencies and is named without a classifier.
+shadowJar {
+    archiveClassifier = ''
+    relocate 'org.bstats', "${group}.libs.bstats"
+    mergeServiceFiles()
+}
+
+tasks.named('jar') {
+    archiveClassifier = 'dev'
+}
+
+tasks.named('build') {
+    dependsOn shadowJar
+}
+
+tasks.named('check') {
+    dependsOn test
 }

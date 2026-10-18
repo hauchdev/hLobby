@@ -1,0 +1,30 @@
+# Normalize line endings so that every contributor works with the same bytes.
+* text=auto eol=lf
+
+# Source code
+*.java   text
+*.gradle text
+*.groovy text
+*.kt     text
+
+# Resources
+*.yml    text
+*.yaml   text
+*.json   text
+*.toml   text
+*.properties text
+*.md     text
+
+# Scripts
+*.bat    text eol=crlf
+*.sh     text eol=lf
+gradlew  text eol=lf
+
+# Binaries
+*.jar    binary
+*.png    binary
+*.jpg    binary
+*.gif    binary
+*.woff   binary
+*.woff2  binary
+*.ttf    binary
