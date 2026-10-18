@@ -19,8 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   configure lobbies.
 - English and Spanish translations using MiniMessage.
 - Server statistics cache refreshed periodically.
-- Optional bStats metrics integration.
-- GitHub update checker.
+- Optional FastStats metrics integration with configurable enable/disable.
+- GitHub update checker that notifies operators and includes the release download link.
+- `/hlobby` administrative command with reload, update and about subcommands.
 - Small public API for third-party plugins.
 - Unit tests for selectors, teleport modes and version comparison.
 
