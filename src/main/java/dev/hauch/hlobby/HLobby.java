@@ -109,11 +109,11 @@ public final class HLobby implements HLobbyProvider {
                 this.updateChecker = new UpdateChecker(this);
             }
 
-            new CommandRegistrar(this).register();
-            new ListenerRegistrar(this).register();
-
             this.serverStats = new ServerStatsCache(this);
             this.serverStats.start();
+
+            new CommandRegistrar(this).register();
+            new ListenerRegistrar(this).register();
 
             if (this.metricsFactory != null) {
                 this.metrics = new MetricsWrapper(this);

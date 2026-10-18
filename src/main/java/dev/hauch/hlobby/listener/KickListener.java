@@ -26,6 +26,11 @@ public final class KickListener {
         if (!this.plugin.config().lobby().onKick().enabled()) {
             return;
         }
+        if (event.kickedDuringServerConnect()) {
+            // Let Velocity handle the kick during the connection process; redirecting here
+            // can cause the player to end up in an inconsistent state.
+            return;
+        }
         if (this.plugin.config().lobby().onKick().excludeLobbies()
             && this.plugin.lobbyManager().isLobby(event.getServer())) {
             return;
