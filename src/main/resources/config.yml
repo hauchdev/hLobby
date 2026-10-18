@@ -131,6 +131,18 @@ commands:
     name: "lobbyreload"
     aliases: ["hlobbyreload"]
     permission: "lobby.admin.reload"
+  hlobby:
+    enabled: true
+    name: "hlobby"
+    aliases: ["hlobbyadmin", "hla"]
+    permission: "lobby.admin.main"
+
+# -----------------------------------------------------------------------------
+# FastStats metrics
+# -----------------------------------------------------------------------------
+metrics:
+  # Send anonymous usage metrics to faststats.dev. No player data is collected.
+  enabled: true
 
 # -----------------------------------------------------------------------------
 # Miscellaneous

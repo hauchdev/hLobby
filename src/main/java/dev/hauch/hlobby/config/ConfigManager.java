@@ -47,6 +47,7 @@ public final class ConfigManager {
     private JoinMessageConfig joinMessage =
         new JoinMessageConfig(true, true, true, 10, 70, 20);
     private MiscConfig misc = new MiscConfig(true);
+    private MetricsConfig metrics = new MetricsConfig(true);
 
     public ConfigManager(final HLobby plugin) {
         this.plugin = plugin;
@@ -77,6 +78,7 @@ public final class ConfigManager {
         this.commands = this.readCommands(root);
         this.joinMessage = this.readJoinMessage(root);
         this.misc = new MiscConfig(root.node("misc", "show-no-permission").getBoolean(true));
+        this.metrics = new MetricsConfig(root.node("metrics", "enabled").getBoolean(true));
 
         this.validate();
     }
@@ -189,7 +191,8 @@ public final class ConfigManager {
             this.readCommand(node.node("mode"), "lobbymode", "lobby.admin.mode"),
             this.readCommand(node.node("tp"), "lobbytp", "lobby.admin.tp"),
             this.readCommand(node.node("server"), "lobbyserver", "lobby.admin.server"),
-            this.readCommand(node.node("reload"), "lobbyreload", "lobby.admin.reload")
+            this.readCommand(node.node("reload"), "lobbyreload", "lobby.admin.reload"),
+            this.readCommand(node.node("hlobby"), "hlobby", "lobby.admin.main")
         );
     }
 
@@ -270,7 +273,8 @@ public final class ConfigManager {
             new CommandDefinition(true, "lobbymode", "lobby.admin.mode"),
             new CommandDefinition(true, "lobbytp", "lobby.admin.tp"),
             new CommandDefinition(true, "lobbyserver", "lobby.admin.server"),
-            new CommandDefinition(true, "lobbyreload", "lobby.admin.reload")
+            new CommandDefinition(true, "lobbyreload", "lobby.admin.reload"),
+            new CommandDefinition(true, "hlobby", "lobby.admin.main")
         );
     }
 
@@ -308,6 +312,10 @@ public final class ConfigManager {
 
     public MiscConfig misc() {
         return this.misc;
+    }
+
+    public MetricsConfig metrics() {
+        return this.metrics;
     }
 
     /** Returns the owning plugin instance. */

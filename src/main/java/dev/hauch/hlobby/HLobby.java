@@ -19,7 +19,6 @@ import dev.hauch.hlobby.message.MessageManager;
 import dev.hauch.hlobby.metrics.MetricsWrapper;
 import dev.hauch.hlobby.teleport.TeleportService;
 import dev.hauch.hlobby.update.UpdateChecker;
-import org.bstats.velocity.Metrics;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;
@@ -51,6 +50,9 @@ public final class HLobby implements HLobbyProvider {
     /** The plugin version. Keep in sync with {@code build.gradle}. */
     public static final String PLUGIN_VERSION = "1.0.0";
 
+    /** The plugin website shown in {@code /hlobby about}. */
+    public static final String PLUGIN_WEBSITE = "https://github.com/hauchdev/hlobby";
+
     private static volatile HLobby instance;
 
     private final ProxyServer proxy;
@@ -65,7 +67,6 @@ public final class HLobby implements HLobbyProvider {
     private TeleportService teleportService;
     private ServerStatsCache serverStats;
     private MetricsWrapper metrics;
-    private Metrics.Factory metricsFactory;
     private UpdateChecker updateChecker;
 
     @Inject
@@ -74,19 +75,6 @@ public final class HLobby implements HLobbyProvider {
         this.proxy = proxy;
         this.logger = logger;
         this.dataDirectory = dataDirectory;
-    }
-
-    /**
-     * Injects the bStats metrics factory when it is available.
-     *
-     * <p>The injection is optional so that the plugin keeps working even when
-     * the metrics library cannot be bound by the proxy's injector.</p>
-     *
-     * @param metricsFactory the bStats metrics factory
-     */
-    @Inject(optional = true)
-    public void setMetricsFactory(final Metrics.Factory metricsFactory) {
-        this.metricsFactory = metricsFactory;
     }
 
     @Subscribe
@@ -115,10 +103,9 @@ public final class HLobby implements HLobbyProvider {
             new CommandRegistrar(this).register();
             new ListenerRegistrar(this).register();
 
-            if (this.metricsFactory != null) {
-                this.metrics = new MetricsWrapper(this);
-                this.metrics.start(this.metricsFactory);
-            }
+            this.metrics = new MetricsWrapper(this, new dev.faststats.velocity.VelocityContext.Builder(
+                this.container(), this.proxy, this.logger, this.dataDirectory));
+            this.metrics.ready();
 
             if (this.updateChecker != null) {
                 this.updateChecker.checkAsync();
@@ -245,6 +232,15 @@ public final class HLobby implements HLobbyProvider {
      */
     public ServerStatsCache serverStats() {
         return this.serverStats;
+    }
+
+    /**
+     * Returns the metrics wrapper.
+     *
+     * @return the metrics wrapper, or {@code null} before the plugin has enabled
+     */
+    public MetricsWrapper metrics() {
+        return this.metrics;
     }
 
     /**
