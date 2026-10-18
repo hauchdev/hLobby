@@ -18,7 +18,7 @@ import dev.hauch.hlobby.HLobby;
 public final class MetricsWrapper {
 
     /** FastStats project token. Replace before releasing. */
-    public static final String FASTSTATS_TOKEN = "";
+    public static final String FASTSTATS_TOKEN = "796b94867f3a6b5557a31dc44adc653e";
 
     private static final ErrorTracker ERROR_TRACKER = ErrorTracker.contextAware();
 
