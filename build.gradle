@@ -9,21 +9,22 @@ group = 'dev.hauch.hlobby'
 ext {
     // Velocity API version comes from gradle.properties (managed by Devix).
     velocityVersion = project.api_version
-    bstatsVersion = '3.2.1'
+    faststatsVersion = '0.30.2'
     junitVersion = '5.11.4'
 }
 
 repositories {
     mavenCentral()
     maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+    maven { name = 'faststatsReleases'; url = 'https://repo.faststats.dev/releases' }
 }
 
 dependencies {
     compileOnly "com.velocitypowered:velocity-api:${velocityVersion}"
     annotationProcessor "com.velocitypowered:velocity-api:${velocityVersion}"
 
-    // bStats anonymous usage metrics (relocated at build time).
-    implementation "org.bstats:bstats-velocity:${bstatsVersion}"
+    // FastStats anonymous usage metrics (relocated at build time).
+    implementation "dev.faststats.metrics:velocity:${faststatsVersion}"
 
     testImplementation platform("org.junit:junit-bom:${junitVersion}")
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -63,7 +64,7 @@ tasks.named('test') {
 // dependencies and is named without a classifier.
 shadowJar {
     archiveClassifier = ''
-    relocate 'org.bstats', "${project.group}.libs.bstats"
+    relocate 'dev.faststats', "${project.group}.libs.faststats"
     mergeServiceFiles()
 }
 
