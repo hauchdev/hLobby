@@ -19,11 +19,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   configure lobbies.
 - English and Spanish translations using MiniMessage.
 - Server statistics cache refreshed periodically.
-- Optional FastStats metrics integration with configurable enable/disable.
+- Optional FastStats metrics integration with configurable enable/disable,
+  defaulting to the `hlobby` FastStats project.
 - GitHub update checker that notifies operators and includes the release download link.
 - `/hlobby` administrative command with reload, update and about subcommands.
 - Small public API for third-party plugins.
 - Unit tests for selectors, teleport modes and version comparison.
+
+### Fixed
+
+- CI wrapper-validation step no longer blocks the build when the upstream
+  Gradle service is unreachable due to transient network errors.
 
 ### Changed
 
