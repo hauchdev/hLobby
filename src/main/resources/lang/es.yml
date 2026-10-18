@@ -83,3 +83,20 @@ kick:
 
 update:
   available: "<yellow>Hay una nueva version de hLobby disponible: <aqua><version></aqua>. Descargala desde <aqua><url></aqua>."
+  checking: "<gray>Buscando actualizaciones de hLobby..."
+  up-to-date: "<green>hLobby esta actualizado (v<version>)."
+  available-now: "<yellow>¡hLobby <version> esta disponible! Descarga: <aqua><url></aqua>."
+  error: "<red>No se pudieron buscar actualizaciones en este momento."
+
+hlobby:
+  help:
+    header: "<dark_aqua>--- Comandos de Admin de hLobby ---"
+    reload: "<aqua>/hlobby reload <gray>- Recargar config, mensajes y lobbies"
+    update: "<aqua>/hlobby update <gray>- Buscar actualizaciones en GitHub"
+    about: "<aqua>/hlobby about <gray>- Mostrar informacion del plugin"
+  about:
+    version: "<aqua>hLobby <gray>v<version> <dark_gray>por <aqua>hauchdev"
+    metrics: "<gray>Metricas: <green>activadas"
+    metrics-disabled: "<gray>Metricas: <red>desactivadas"
+    website: "<gray>Sitio web: <aqua><url>"
+  unknown-subcommand: "<red>Subcomando desconocido. Usa <aqua>/hlobby help</aqua> para ver la ayuda."

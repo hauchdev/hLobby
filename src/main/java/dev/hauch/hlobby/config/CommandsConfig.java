@@ -12,6 +12,7 @@ package dev.hauch.hlobby.config;
  * @param tp the {@code /lobbytp} command
  * @param server the {@code /lobbyserver} command
  * @param reload the {@code /lobbyreload} command
+ * @param hlobby the root {@code /hlobby} administrative command
  */
 public record CommandsConfig(
     CommandDefinition lobby,
@@ -22,6 +23,7 @@ public record CommandsConfig(
     CommandDefinition mode,
     CommandDefinition tp,
     CommandDefinition server,
-    CommandDefinition reload
+    CommandDefinition reload,
+    CommandDefinition hlobby
 ) {
 }

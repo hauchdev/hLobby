@@ -83,7 +83,22 @@ public enum MessageKey {
     KICK_REDIRECT("kick.redirect"),
 
     // Update
-    UPDATE_AVAILABLE("update.available");
+    UPDATE_AVAILABLE("update.available"),
+    UPDATE_CHECKING("update.checking"),
+    UPDATE_UP_TO_DATE("update.up-to-date"),
+    UPDATE_AVAILABLE_NOW("update.available-now"),
+    UPDATE_ERROR("update.error"),
+
+    // Admin command
+    HLOBBY_HELP_HEADER("hlobby.help.header"),
+    HLOBBY_HELP_RELOAD("hlobby.help.reload"),
+    HLOBBY_HELP_UPDATE("hlobby.help.update"),
+    HLOBBY_HELP_ABOUT("hlobby.help.about"),
+    HLOBBY_ABOUT_VERSION("hlobby.about.version"),
+    HLOBBY_ABOUT_METRICS("hlobby.about.metrics"),
+    HLOBBY_ABOUT_METRICS_DISABLED("hlobby.about.metrics-disabled"),
+    HLOBBY_ABOUT_WEBSITE("hlobby.about.website"),
+    HLOBBY_UNKNOWN_SUBCOMMAND("hlobby.unknown-subcommand");
 
     private final String key;
 

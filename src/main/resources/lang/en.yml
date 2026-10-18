@@ -88,3 +88,20 @@ kick:
 
 update:
   available: "<yellow>A new hLobby version is available: <aqua><version></aqua>. Download it from <aqua><url></aqua>."
+  checking: "<gray>Checking for hLobby updates..."
+  up-to-date: "<green>hLobby is up to date (v<version>)."
+  available-now: "<yellow>hLobby <version> is available! Download: <aqua><url></aqua>."
+  error: "<red>Could not check for updates right now."
+
+hlobby:
+  help:
+    header: "<dark_aqua>--- hLobby Admin Commands ---"
+    reload: "<aqua>/hlobby reload <gray>- Reload config, messages and lobbies"
+    update: "<aqua>/hlobby update <gray>- Check for updates on GitHub"
+    about: "<aqua>/hlobby about <gray>- Show plugin information"
+  about:
+    version: "<aqua>hLobby <gray>v<version> <dark_gray>by <aqua>hauchdev"
+    metrics: "<gray>Metrics: <green>enabled"
+    metrics-disabled: "<gray>Metrics: <red>disabled"
+    website: "<gray>Website: <aqua><url>"
+  unknown-subcommand: "<red>Unknown subcommand. Use <aqua>/hlobby help</aqua> for help."

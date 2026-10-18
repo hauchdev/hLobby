@@ -36,6 +36,7 @@ public final class CommandRegistrar {
         this.register(commands.tp(), new LobbyTpCommand(this.plugin, commands.tp()));
         this.register(commands.server(), new LobbyServerCommand(this.plugin, commands.server()));
         this.register(commands.reload(), new LobbyReloadCommand(this.plugin, commands.reload()));
+        this.register(commands.hlobby(), new HlobbyCommand(this.plugin, commands.hlobby()));
     }
 
     private void register(final CommandDefinition definition, final PluginCommand command) {

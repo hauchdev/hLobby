@@ -35,6 +35,9 @@ public enum Permission {
     /** Reload the configuration. */
     ADMIN_RELOAD("lobby.admin.reload"),
 
+    /** Use the root {@code /hlobby} administrative command. */
+    ADMIN_MAIN("lobby.admin.main"),
+
     /** Ignore the {@code /lobby} cooldown. */
     BYPASS_COOLDOWN("lobby.bypass.cooldown"),
 
@@ -76,6 +79,7 @@ public enum Permission {
             case "tp" -> ADMIN_TP.getNode();
             case "server" -> ADMIN_SERVER.getNode();
             case "reload" -> ADMIN_RELOAD.getNode();
+            case "hlobby" -> ADMIN_MAIN.getNode();
             default -> "lobby." + id;
         };
     }
