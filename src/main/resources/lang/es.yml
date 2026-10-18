@@ -1,0 +1,85 @@
+# #############################################################################
+#  hLobby - Spanish messages
+# #############################################################################
+#  Este archivo usa el formato MiniMessage.
+#  https://docs.advntr.dev/minimessage/format.html
+
+prefix: "<dark_gray>[</dark_gray><gradient:#5e4fa2:#f7971e>hLobby</gradient><dark_gray>]</dark_gray> "
+no-permission: "<red>No tienes permisos para usar este comando."
+only-players: "<red>Este comando solo puede ser usado por jugadores."
+player-not-found: "<red>El jugador <yellow>%player%</yellow> no esta conectado."
+usage: "<red>Uso: <gray>%usage%</gray>"
+unknown-server: "<red>Servidor desconocido <yellow>%server%</yellow>."
+
+command:
+  disabled: "<red>Este comando esta deshabilitado."
+
+reload:
+  success: "<green>Configuracion y mensajes recargados."
+  error: "<red>Error al recargar la configuracion. Revisa la consola para mas detalles."
+
+lobby:
+  teleport: "<green>Teletransportandote a <yellow>%server%</yellow>..."
+  no-lobbies: "<red>No hay ninguna lobby disponible ahora mismo."
+  blocked-server: "<red>No puedes usar este comando en este servidor."
+  same-server: "<red>Ya estas conectado a este servidor."
+  waiting: "<yellow>Teletransportando en <gold>%seconds%</gold> segundos..."
+  cancelled: "<red>Teletransporte cancelado."
+  cooldown: "<red>Espera <yellow>%seconds%</yellow> segundos antes de usar este comando de nuevo."
+  fallback: "<red>No hay ninguna lobby disponible y no hay servidor de respaldo configurado."
+  using-fallback: "<yellow>No habia ninguna lobby disponible, enviandote a <gold>%server%</gold>."
+
+create:
+  success: "<green>El servidor <yellow>%server%</yellow> ahora es una lobby."
+  already: "<red>El servidor <yellow>%server%</yellow> ya es una lobby."
+  not-found: "<red>El servidor <yellow>%server%</yellow> no existe."
+  arguments: "<red>Uso: /<command> <servidor>"
+  list: "<green>Servidores lobby: <yellow>%servers%</yellow>"
+
+remove:
+  success: "<green>El servidor <yellow>%server%</yellow> ya no es una lobby."
+  not-lobby: "<red>El servidor <yellow>%server%</yellow> no es una lobby."
+  arguments: "<red>Uso: /<command> <servidor>"
+  empty: "<yellow>No hay servidores lobby configurados."
+
+list:
+  header: "<dark_aqua>--------- <aqua>Servidores lobby</aqua> <dark_aqua>---------"
+  entry: "<gray>%index%.</gray> <aqua>%server%</aqua> <dark_gray>(<gray>%online%/%max%</gray>)</dark_gray>"
+  empty: "<red>No hay servidores lobby configurados."
+  footer: "<dark_aqua>----------------------------------"
+  summary: "<gray>Total de lobbies: <aqua>%amount%</aqua></gray>"
+
+transport:
+  success: "<green>Enviados <yellow>%amount%</yellow> jugadores de <yellow>%from%</yellow> a <yellow>%to%</yellow>."
+  same: "<red>No puedes transportar jugadores al mismo servidor."
+  not-lobby: "<red>El servidor <yellow>%server%</yellow> no es una lobby."
+  arguments: "<red>Uso: /<command> <origen> <destino>"
+  nothing: "<yellow>No habia jugadores conectados en <yellow>%from%</yellow>."
+
+mode:
+  success: "<green>Modo de teletransporte cambiado a <yellow>%mode%</yellow>."
+  invalid: "<red>Modo desconocido <yellow>%mode%</yellow>. Modos disponibles: %modes%"
+  arguments: "<red>Uso: /<command> <modo>"
+  list: "<aqua>Modos disponibles: <gray>%modes%</gray>"
+
+tp:
+  success: "<green>Enviado <yellow>%player%</yellow> a la lobby <yellow>%server%</yellow>."
+  target-notified: "<yellow>Un administrador te envio a la lobby <aqua>%server%</aqua>.</yellow>"
+  arguments: "<red>Uso: /<command> <jugador>"
+
+server:
+  success: "<green>Enviandote a la lobby <yellow>%server%</yellow>..."
+  not-lobby: "<red>El servidor <yellow>%server%</yellow> no es una lobby."
+  arguments: "<red>Uso: /<command> <servidor>"
+
+join:
+  title: "<gradient:#5e4fa2:#f7971e>hLobby</gradient>"
+  subtitle: "<gray>Bienvenido de nuevo!"
+  actionbar: "<aqua>Bienvenido a la lobby!"
+  chat: "<gray>Bienvenido a la lobby, <aqua>%player%</aqua>!"
+
+kick:
+  redirect: "<red>Fuiste expulsado y enviado de vuelta a la lobby."
+
+update:
+  available: "<yellow>Hay una nueva version de hLobby disponible: <aqua>%version%</aqua>. Descargala desde <aqua>%url%</aqua>."

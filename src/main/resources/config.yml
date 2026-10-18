@@ -1,0 +1,140 @@
+# #############################################################################
+#  hLobby - configuration
+# #############################################################################
+#  Schema version of this file. Do not change it manually.
+config-version: 1
+
+# -----------------------------------------------------------------------------
+# General settings
+# -----------------------------------------------------------------------------
+general:
+  # Language file used for messages, without extension. Files live in
+  # plugins/hLobby/lang/ (for example "en" loads lang/en.yml).
+  language: "en"
+  # Enables verbose debug logging. Useful when reporting issues.
+  debug: false
+  # Check GitHub for a newer release on startup and notify operators.
+  check-updates: true
+
+# -----------------------------------------------------------------------------
+# Lobby settings
+# -----------------------------------------------------------------------------
+lobby:
+  # Strategy used to select the target lobby.
+  #   RANDOM          - pick a lobby at random
+  #   LEAST_PLAYERS   - pick the lobby with the fewest players
+  #   MOST_PLAYERS    - pick the lobby with the most players
+  #   FIRST_AVAILABLE - pick the first lobby in the list below
+  #   PRIORITY        - pick the lobby with the highest priority
+  #   ROUND_ROBIN     - rotate through the lobbies in order
+  teleport-mode: "LEAST_PLAYERS"
+
+  # Server names that are considered lobbies. These must match the server
+  # names in your velocity.toml.
+  servers: []
+
+  # Per-server priority used by the PRIORITY strategy. Higher is preferred.
+  # Servers not listed here use `default-priority`.
+  priorities: {}
+  default-priority: 0
+
+  # Servers on which the /lobby command is blocked.
+  blocked-servers: []
+
+  # Optional server used when no lobby is available. Leave empty to disable.
+  fallback-server: ""
+
+  # Countdown shown before teleporting a player to a lobby.
+  countdown:
+    enabled: true
+    seconds: 3
+    cancel-on-command: true
+    cancel-on-chat: true
+    sound: true
+
+  # Anti-spam cooldown for the /lobby command.
+  cooldown:
+    enabled: true
+    seconds: 5
+
+  # Automatically send players to a lobby when they join the proxy.
+  on-join:
+    enabled: true
+    # When true, only the first join of a player is redirected.
+    only-first-join: false
+
+  # Redirect players to a lobby when they are kicked from a server.
+  on-kick:
+    enabled: true
+    # When true, players kicked from a lobby are left alone.
+    exclude-lobbies: false
+    # Send a message explaining the redirect.
+    notify: true
+
+# -----------------------------------------------------------------------------
+# Message shown when a player enters a lobby server
+# -----------------------------------------------------------------------------
+join-messages:
+  title: true
+  actionbar: true
+  chat: true
+  title-fade-in: 10
+  title-stay: 70
+  title-fade-out: 20
+
+# -----------------------------------------------------------------------------
+# Command definitions
+# -----------------------------------------------------------------------------
+commands:
+  lobby:
+    enabled: true
+    name: "lobby"
+    aliases: ["hub", "leave"]
+    permission: "lobby.use"
+  create:
+    enabled: true
+    name: "lobbycreate"
+    aliases: ["lobbyadd", "addlobby"]
+    permission: "lobby.admin.create"
+  remove:
+    enabled: true
+    name: "lobbyremove"
+    aliases: ["lobbydelete", "deletelobby"]
+    permission: "lobby.admin.remove"
+  list:
+    enabled: true
+    name: "lobbylist"
+    aliases: ["lobbies", "listlobby"]
+    permission: "lobby.admin.list"
+  transport:
+    enabled: true
+    name: "lobbytransport"
+    aliases: ["transportlobby"]
+    permission: "lobby.admin.transport"
+  mode:
+    enabled: true
+    name: "lobbymode"
+    aliases: []
+    permission: "lobby.admin.mode"
+  tp:
+    enabled: true
+    name: "lobbytp"
+    aliases: ["tpplayer"]
+    permission: "lobby.admin.tp"
+  server:
+    enabled: true
+    name: "lobbyserver"
+    aliases: ["joins"]
+    permission: "lobby.admin.server"
+  reload:
+    enabled: true
+    name: "lobbyreload"
+    aliases: ["hlobbyreload"]
+    permission: "lobby.admin.reload"
+
+# -----------------------------------------------------------------------------
+# Miscellaneous
+# -----------------------------------------------------------------------------
+misc:
+  # Send a message when a player lacks the required permission.
+  show-no-permission: true
