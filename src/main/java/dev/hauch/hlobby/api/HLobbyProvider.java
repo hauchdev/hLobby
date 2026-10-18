@@ -57,7 +57,7 @@ public interface HLobbyProvider {
 
     /** Returns the currently configured teleport mode. */
     default TeleportMode teleportMode() {
-        return config().lobby().teleportMode();
+        return TeleportMode.parse(config().lobby().teleportMode());
     }
 
     /**

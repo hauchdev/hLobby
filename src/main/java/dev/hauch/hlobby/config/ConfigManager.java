@@ -5,6 +5,7 @@ import dev.hauch.hlobby.lobby.TeleportMode;
 import org.slf4j.Logger;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.loader.ConfigurationLoader;
+import org.spongepowered.configurate.serialize.SerializationException;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.io.IOException;
@@ -205,11 +206,16 @@ public final class ConfigManager {
     }
 
     private List<String> readList(final ConfigurationNode node) {
-        final List<String> values = node.getList(String.class, new ArrayList<>());
-        if (values == null) {
+        try {
+            final List<String> values = node.getList(String.class, new ArrayList<>());
+            if (values == null) {
+                return List.of();
+            }
+            return List.copyOf(values.stream().filter(value -> value != null && !value.isBlank()).toList());
+        } catch (final SerializationException exception) {
+            this.logger.warn("Failed to read a list from the configuration: {}", exception.getMessage());
             return List.of();
         }
-        return List.copyOf(values.stream().filter(value -> value != null && !value.isBlank()).toList());
     }
 
     private void validate() {

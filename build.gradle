@@ -56,7 +56,7 @@ tasks.named('test') {
 // dependencies and is named without a classifier.
 shadowJar {
     archiveClassifier = ''
-    relocate 'org.bstats', "${group}.libs.bstats"
+    relocate 'org.bstats', "${project.group}.libs.bstats"
     mergeServiceFiles()
 }
 

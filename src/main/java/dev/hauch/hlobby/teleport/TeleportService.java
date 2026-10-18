@@ -48,7 +48,7 @@ public final class TeleportService {
     public boolean sendToLobby(final Player player) {
         if (this.isCoolingDown(player)) {
             this.plugin.messages().send(player, MessageKey.LOBBY_COOLDOWN,
-                Placeholders.seconds(this.remainingSeconds(player)));
+                Placeholders.seconds((int) this.remainingSeconds(player)));
             return false;
         }
 

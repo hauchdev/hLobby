@@ -5,7 +5,7 @@ package dev.hauch.hlobby.config;
  *
  * @param enabled whether kicked players are redirected to a lobby
  * @param excludeLobbies whether players kicked from a lobby are left alone
- * @param notify whether the player is notified about the redirect
+ * @param notifyPlayer whether the player is notified about the redirect
  */
-public record OnKickConfig(boolean enabled, boolean excludeLobbies, boolean notify) {
+public record OnKickConfig(boolean enabled, boolean excludeLobbies, boolean notifyPlayer) {
 }
